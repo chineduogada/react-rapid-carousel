@@ -10,7 +10,7 @@
 npm install --save react-rapid-carousel
 ```
 
-## USAGEs
+## USAGES
 
 ### with Components
 
@@ -127,12 +127,11 @@ const App = () => {
     slides: heroes,
     // is {...spread} below the main `config` obj: (only changes what is specified)!!!
     patchConfig: {
-      // specifies `slidesToShow` for a `media-query`
+      //
       breakpoints: [
         { width: '414', slidesToShow: 1 },
         { width: 768, slidesToShow: '3' }
       ],
-      // specifies animation: which happens after every 2s and pause onMouseHover in a reverse mode
       autoSlide: {
         reverse: true,
         interval: 2000,
@@ -166,7 +165,6 @@ const App = () => {
         }
       })}
 
-      {/*Fader can only render one `slide` at a time: perfect for `heroes`, `headers`, etc... */}
       {renderFader({
         style: {
           // specifies shape for each of the slides: (might be very useful)
@@ -180,6 +178,53 @@ const App = () => {
   )
 }
 ```
+
+## API
+
+### Components
+
+#### Slider
+
+| Prop         |                                    Type                                    | Description                                                                                                                       |
+| ------------ | :------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------- |
+| quickSlide   |                                  boolean                                   | Works with `autoSlide` and depends on `slidesToShow`: basically moves in sections: which makes much faster                        |
+| dots         |                                  boolean                                   | Depends on `slidesToShow`: display dots below the Component for moving the slides to a particular section                         |
+| buttons      |                                  boolean                                   | Display caret button: (`next` and `prev` buttons) for moving the slide back and forth                                             |
+| slidesToShow |                                   number                                   | The amount of `slides` to display at a time                                                                                       |
+| transition   |                                   string                                   | Css transition property                                                                                                           |
+| children     |                   Array<HTMLElement> &#124; HTMLElement                    | These are the total amount `slides` to be eventually displayed: all slides                                                        |
+| breakpoints  |                Array<{width: number: slidesToShow: number}>                | For responsive experience: `width`s should be arranged in an ascending manner/order to get the desired result                     |
+| autoSlide    | boolean &#124; {reverse: boolean, pauseOnHover: boolean, interval: number} | Adds animation: which happens after every interval which can be pauseOnMouseHover and move in a reverse mode, if specified though |
+
+#### Fader component
+
+##### Fader can only render one `slide` at a time: perfect for `heroes`, `headers`, etc.... Is a lighter version
+
+| Prop       |                           Type                           | Description                                                                                               |
+| ---------- | :------------------------------------------------------: | --------------------------------------------------------------------------------------------------------- |
+| dots       |                         boolean                          | Depends on `slidesToShow`: display dots below the Component for moving the slides to a particular section |
+| buttons    |                         boolean                          | Display caret button: (`next` and `prev` buttons) for moving the slide back and forth                     |
+| transition |                          string                          | Css transition property                                                                                   |
+| children   |          Array<HTMLElement> &#124; HTMLElement           | These are the total amount `slides` to be eventually displayed: all slides                                |
+| autoSlide  | boolean &#124; {pauseOnHover: boolean, interval: number} | Adds animation: which happens after every interval and can pauseOnMouseHover, if specified though         |
+
+### Hooks
+
+#### useSlider
+
+| Prop        |                 Type                  | Description                                                                                                                                       |
+| ----------- | :-----------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| slides      | Array<HTMLElement> &#124; HTMLElement | equivalent to `Slider.props.children`                                                                                                             |
+| config      |                Object                 | equivalent to `...Slider.props` : all possible props that be passed to `Slider` component                                                         |
+| patchConfig |                Object                 | equivalent to `...Slider.props`: but depends on `config` because its appends to it: can override existing props from the `config` or add new ones |
+
+#### useFader
+
+| Prop        |                 Type                  | Description                                                                                                                                      |
+| ----------- | :-----------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| slides      | Array<HTMLElement> &#124; HTMLElement | equivalent to `Fader.props.children`                                                                                                             |
+| config      |                Object                 | equivalent to `...Fader.props` : all possible props that be passed to `Fader` component                                                          |
+| patchConfig |                Object                 | equivalent to `...Fader.props`: but depends on `config` because its appends to it: can override existing props from the `config` or add new ones |
 
 ## License
 
