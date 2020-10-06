@@ -94,61 +94,6 @@ const heroes = [
       ipsa cumque optio aliquam ea velit, eos, nihil neque minus soluta
       cupiditate.
     </a>
-  </div>,
-  <div>
-    <h3>
-      <b>9</b>
-    </h3>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, ipsam cum!
-    Blanditiis voluptates praesentium non recusandae ipsam reiciendis,
-    <a href='/9'>
-      ipsa cumque optio aliquam ea velit, eos, nihil neque minus soluta
-      cupiditate.
-    </a>
-  </div>,
-  <div>
-    <h3>
-      <b>10</b>
-    </h3>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, ipsam cum!
-    Blanditiis voluptates praesentium non recusandae ipsam reiciendis,
-    <a href='/10'>
-      ipsa cumque optio aliquam ea velit, eos, nihil neque minus soluta
-      cupiditate.
-    </a>
-  </div>,
-  <div>
-    <h3>
-      <b>11</b>
-    </h3>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, ipsam cum!
-    Blanditiis voluptates praesentium non recusandae ipsam reiciendis,
-    <a href='/11'>
-      ipsa cumque optio aliquam ea velit, eos, nihil neque minus soluta
-      cupiditate.
-    </a>
-  </div>,
-  <div>
-    <h3>
-      <b>12</b>
-    </h3>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, ipsam cum!
-    Blanditiis voluptates praesentium non recusandae ipsam reiciendis,
-    <a href='/12'>
-      ipsa cumque optio aliquam ea velit, eos, nihil neque minus soluta
-      cupiditate.
-    </a>
-  </div>,
-  <div>
-    <h3>
-      <b>13</b>
-    </h3>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, ipsam cum!
-    Blanditiis voluptates praesentium non recusandae ipsam reiciendis,
-    <a href='/13'>
-      ipsa cumque optio aliquam ea velit, eos, nihil neque minus soluta
-      cupiditate.
-    </a>
   </div>
 ]
 
