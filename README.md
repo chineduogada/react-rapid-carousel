@@ -14,7 +14,7 @@ npm install --save react-rapid-carousel
 
 ### with Components
 
-###### Use Component directly to maximize your needs.
+###### Use Components directly to maximize your needs.
 
 ###### Comes with only `Components.defaultProps` benefits.
 
@@ -80,7 +80,7 @@ const App = () => (
 
 ### With hooks
 
-###### Using the provided hooks, you focus more on how to add your custom functionalities and appearance, rather than how to the Components themselves.
+###### Using the provided hooks, you focus more on what to add: (custom functionalities and appearance), rather than how to implement the Components themselves.
 
 ###### Comes with great props `configurations` and `Components.defaultProps` benefits.
 
