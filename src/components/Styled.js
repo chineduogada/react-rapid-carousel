@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 const Styled = styled.div`
-  /* border: 3px solid red; */
   display: flex;
   align-items: center;
   width: 100%;
@@ -15,20 +14,17 @@ const Styled = styled.div`
     overflow: hidden;
 
     .center {
-      /* border: 2px solid blue; */
       display: flex;
       box-sizing: border-box;
       overflow: hidden;
 
       .slide {
-        /* border: 1px solid gold; */
         box-sizing: border-box;
         flex: 1 0 ${({ flexBasis }) => flexBasis};
       }
     }
 
     .dots {
-      /* border: 1px solid green; */
       min-height: 16px;
       display: flex;
       align-items: center;
