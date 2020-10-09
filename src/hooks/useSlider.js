@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Slider } from 'react-rapid-carousel'
+import Slider from '../components/core/Slider'
 
 const useSlider = ({
   slides = [],

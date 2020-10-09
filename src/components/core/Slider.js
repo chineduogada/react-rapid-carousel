@@ -113,6 +113,8 @@ function Slider({
 
     const setTabIndex = (nodeList, tabIndex) => {
       nodeList.forEach((item) => {
+        console.log(item)
+
         const allFocusingElements = [
           ...item.querySelectorAll('a, button, input, textarea, area')
         ]

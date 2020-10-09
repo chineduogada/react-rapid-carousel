@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Fader } from 'react-rapid-carousel'
+import Fader from '../components/core/Fader'
 
 const useFader = ({
   slides = [],
