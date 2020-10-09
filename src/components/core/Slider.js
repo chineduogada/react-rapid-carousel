@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { v4 as uuid } from 'uuid'
 
 import Styled from '../Styled'
 import createRange from '../../utils/createRange'
@@ -30,7 +29,12 @@ function Slider({
   const [nextClicks, setNextClicks] = useState(0)
   const [slideToPrev, setSlideToPrev] = useState(false)
   const [startAutoSlide, setStartAutoSlide] = useState(true)
-  const sliderId = useMemo(() => `Slider__${uuid()}`)
+  const sliderId = useMemo(() =>
+    `Slider__${Math.random() * 200 + Math.round(Math.random())}`.replace(
+      '.',
+      Math.floor(Math.random() + 100)
+    )
+  )
   // end of States
 
   // VARIABLES
