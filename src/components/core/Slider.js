@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { v4 as uuid } from 'uuid'
 
-import Styled from '../Styled'
 import createRange from '../../utils/createRange'
 import Button from '../Button'
 import { getTranslateXRanges, strippedNum } from '../../helpers'
@@ -30,7 +28,12 @@ function Slider({
   const [nextClicks, setNextClicks] = useState(0)
   const [slideToPrev, setSlideToPrev] = useState(false)
   const [startAutoSlide, setStartAutoSlide] = useState(true)
-  const sliderId = useMemo(() => `Slider__${uuid()}`)
+  const sliderId = useMemo(() =>
+    `Slider__${Math.random() * 200 + Math.round(Math.random())}`.replace(
+      '.',
+      Math.floor(Math.random() + 100)
+    )
+  )
   // end of States
 
   // VARIABLES
@@ -109,13 +112,16 @@ function Slider({
 
   // SIDE EFFECTS
   useEffect(() => {
-    const allSlides = [...document.querySelectorAll(`#${sliderId} .slide`)]
+    const allDocSlides = document.querySelectorAll(`#${sliderId} .slide`)
+    const allSlides = []
+
+    allDocSlides.forEach((slide) => allSlides.push(slide))
 
     const setTabIndex = (nodeList, tabIndex) => {
       nodeList.forEach((item) => {
-        const allFocusingElements = [
-          ...item.querySelectorAll('a, button, input, textarea, area')
-        ]
+        const allFocusingElements = item.querySelectorAll(
+          'a, button, input, textarea, area'
+        )
 
         allFocusingElements.forEach((element) => {
           element.addEventListener('focus', handleMouseHoverSlide)
@@ -226,9 +232,9 @@ function Slider({
   // Component Props
 
   const componentProps = {
-    Styled: {
-      flexBasis: `${100 / slidesToShow}%`
-    },
+    // Styled: {
+    //   // flexBasis: `${100 / slidesToShow}%`
+    // },
     Dots: {
       data: { dots: dotsList, slidesToShow, translateX },
       onClick: handleDotClick
@@ -243,9 +249,8 @@ function Slider({
   }
 
   return (
-    <Styled
+    <div
       id={sliderId}
-      {...componentProps.Styled}
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverSlide : null
       }
@@ -266,7 +271,7 @@ function Slider({
       </main>
 
       {buttons && <Button {...componentProps.Buttons[1]} />}
-    </Styled>
+    </div>
   )
 }
 

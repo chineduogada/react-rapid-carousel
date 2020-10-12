@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Styled from '../Styled'
 import createRange from '../../utils/createRange'
 import Button from '../Button'
 import Dots from '../Dots'
@@ -115,23 +114,21 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   useEffect(() => {
     const { current: Slide } = slideRef
 
-    const allFocusingElements = [
-      ...Slide.querySelectorAll('a, button, input, textarea, area')
-    ]
+    const allFocusingElements = Slide.querySelectorAll(
+      'a, button, input, textarea, area'
+    )
 
     allFocusingElements.forEach((element) => {
-      element.addEventListener('focus', handleMouseHoverFade)
-      element.addEventListener('blur', handleMouseLeaveFade)
+      if (element) {
+        element.addEventListener('focus', handleMouseHoverFade)
+        element.addEventListener('blur', handleMouseLeaveFade)
+      }
     })
   }, [currentSlideData])
-
   // // end of SIDE EFFECTS
 
   // // Component Props
   const componentProps = {
-    Styled: {
-      flexBasis: '100%'
-    },
     Dots: {
       data: { dots: dotsList, currentDot: currentSlideData.index },
       onClick: handleDotClick
@@ -146,8 +143,7 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   }
 
   return (
-    <Styled
-      {...componentProps.Styled}
+    <div
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverFade : null
       }
@@ -170,7 +166,7 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
       </main>
 
       {buttons && <Button {...componentProps.Buttons[1]} />}
-    </Styled>
+    </div>
   )
 }
 

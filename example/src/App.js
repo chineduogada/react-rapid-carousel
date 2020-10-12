@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Slider, Fader } from 'react-rapid-carousel'
-import 'react-rapid-carousel/dist/index.css'
+// import 'react-rapid-carousel/dist/index.css'
 
 const heroes = [
   <div key={4}>4</div>,
