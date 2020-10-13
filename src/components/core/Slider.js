@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Styled from '../Styled'
 import createRange from '../../utils/createRange'
 import Button from '../Button'
 import { getTranslateXRanges, strippedNum } from '../../helpers'
@@ -113,15 +112,16 @@ function Slider({
 
   // SIDE EFFECTS
   useEffect(() => {
-    const allSlides = [...document.querySelectorAll(`#${sliderId} .slide`)]
+    const allDocSlides = document.querySelectorAll(`#${sliderId} .slide`)
+    const allSlides = []
+
+    allDocSlides.forEach((slide) => allSlides.push(slide))
 
     const setTabIndex = (nodeList, tabIndex) => {
       nodeList.forEach((item) => {
-        console.log(item)
-
-        const allFocusingElements = [
-          ...item.querySelectorAll('a, button, input, textarea, area')
-        ]
+        const allFocusingElements = item.querySelectorAll(
+          'a, button, input, textarea, area'
+        )
 
         allFocusingElements.forEach((element) => {
           element.addEventListener('focus', handleMouseHoverSlide)
@@ -232,9 +232,9 @@ function Slider({
   // Component Props
 
   const componentProps = {
-    Styled: {
-      flexBasis: `${100 / slidesToShow}%`
-    },
+    // Styled: {
+    //   // flexBasis: `${100 / slidesToShow}%`
+    // },
     Dots: {
       data: { dots: dotsList, slidesToShow, translateX },
       onClick: handleDotClick
@@ -249,9 +249,8 @@ function Slider({
   }
 
   return (
-    <Styled
+    <div
       id={sliderId}
-      {...componentProps.Styled}
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverSlide : null
       }
@@ -272,7 +271,7 @@ function Slider({
       </main>
 
       {buttons && <Button {...componentProps.Buttons[1]} />}
-    </Styled>
+    </div>
   )
 }
 
@@ -312,4 +311,5 @@ Slider.propTypes = {
 }
 
 export default Slider
+
 
