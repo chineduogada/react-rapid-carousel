@@ -6,6 +6,7 @@ import Button from '../Button'
 import { getTranslateXRanges, strippedNum } from '../../helpers'
 import Dots from '../Dots'
 import Slide from '../Slide'
+import Styled from '../Styled'
 
 function Slider({
   children: slides,
@@ -232,9 +233,9 @@ function Slider({
   // Component Props
 
   const componentProps = {
-    // Styled: {
-    //   // flexBasis: `${100 / slidesToShow}%`
-    // },
+    Styled: {
+      flexBasis: `${100 / slidesToShow}%`
+    },
     Dots: {
       data: { dots: dotsList, slidesToShow, translateX },
       onClick: handleDotClick
@@ -249,7 +250,8 @@ function Slider({
   }
 
   return (
-    <div
+    <Styled
+      {...componentProps.Styled}
       id={sliderId}
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverSlide : null
@@ -271,7 +273,7 @@ function Slider({
       </main>
 
       {buttons && <Button {...componentProps.Buttons[1]} />}
-    </div>
+    </Styled>
   )
 }
 
@@ -311,5 +313,4 @@ Slider.propTypes = {
 }
 
 export default Slider
-
 

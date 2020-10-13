@@ -5,6 +5,7 @@ import createRange from '../../utils/createRange'
 import Button from '../Button'
 import Dots from '../Dots'
 import Slide from '../Slide'
+import Styled from '../Styled'
 
 function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   slides = slides && !slides.length ? [slides] : slides
@@ -76,10 +77,9 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   const handleMouseHoverFade = () => {
     setStartAutoSlide(false)
   }
-  // // end of HANDLERS
+  // end of HANDLERS
 
   // SIDE EFFECTS
-
   useEffect(() => {
     const { current: Slide } = slideRef
 
@@ -125,10 +125,13 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
       }
     })
   }, [currentSlideData])
-  // // end of SIDE EFFECTS
+  // end of SIDE EFFECTS
 
-  // // Component Props
+  // Component Props
   const componentProps = {
+    Styled: {
+      flexBasis: '100%'
+    },
     Dots: {
       data: { dots: dotsList, currentDot: currentSlideData.index },
       onClick: handleDotClick
@@ -143,7 +146,8 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   }
 
   return (
-    <div
+    <Styled
+      {...componentProps.Styled}
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverFade : null
       }
@@ -166,7 +170,7 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
       </main>
 
       {buttons && <Button {...componentProps.Buttons[1]} />}
-    </div>
+    </Styled>
   )
 }
 
