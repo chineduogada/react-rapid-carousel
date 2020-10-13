@@ -3,20 +3,19 @@ import React from 'react'
 import { Slider, Fader } from 'react-rapid-carousel'
 
 const heroes = [
-  <div key={4}>
-    4 :yes <a href='./'>anchor</a>
+  <div styles={{ width: '100%' }} key={4}>
+    4 <img src='./' />
   </div>,
-  <div key={5}>
-    5 :joy <button>Button</button>
+  <div styles={{ width: '100%' }} key={5}>
+    5 :joy
   </div>,
-  <div key={6}>
-    6ix <input type='text' defaultValue='input' />
+  <div styles={{ width: '100%' }} key={6}>
+    6ix
   </div>
 ]
-
 const App = () => (
   <div>
-    <Slider>{heroes.map((hero) => hero)}</Slider>
+    <Slider slidesToShow='2'>{heroes.map((hero) => hero)}</Slider>
 
     <Fader>{heroes.map((hero) => hero)}</Fader>
   </div>

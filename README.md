@@ -27,11 +27,15 @@ import { Slider, Fader } from 'react-rapid-carousel'
 import 'react-rapid-carousel/dist/index.css'
 
 const heroes = [
-  <div key={4}>
+  <div styles={{ width: '100%' }} key={4}>
     4 <img src='./' />
   </div>,
-  <div key={5}>5 :joy</div>,
-  <div key={6}>6ix</div>
+  <div styles={{ width: '100%' }} key={5}>
+    5 :joy
+  </div>,
+  <div styles={{ width: '100%' }} key={6}>
+    6ix
+  </div>
 ]
 
 const App = () => (
@@ -52,20 +56,26 @@ import { Slider, Fader } from 'react-rapid-carousel'
 import 'react-rapid-carousel/dist/index.css'
 
 const slides = [
-  <div key={4}>
+  <div styles={{ width: '100%' }} key={4}>
     4 <img src='./' />
   </div>,
-  <div key={5}>5 :joy</div>,
-  <div key={6}>6ix</div>
+  <div styles={{ width: '100%' }} key={5}>
+    5 :joy
+  </div>,
+  <div styles={{ width: '100%' }} key={6}>
+    6ix
+  </div>
 ]
 
 const App = () => (
   <div>
-    <Slider breakpoints={[
-      // define any width you want, but from from small to large widths
-      {width: 414, slidesToShow: 1},
-      {width: 600, slidesToShow: 2},
-    ]}>
+    <Slider
+      breakpoints={[
+        // define any width you want, but from from small to large widths
+        { width: 414, slidesToShow: 1 },
+        { width: 600, slidesToShow: 2 }
+      ]}
+    >
       {heroes.map((hero) => hero)}
     </Slider>
 
@@ -96,13 +106,17 @@ const App = () => (
   <div>
     <Slider buttons={false} autoSlide slidesToShow={4}>
       {heroes.map((hero, index) => (
-        <div key={index}>{hero} i'm a Slider</div>
+        <div styles={{ width: '100%' }} key={index}>
+          {hero} i'm a Slider
+        </div>
       ))}
     </Slider>
 
     <Fader autoSlide={{ pauseOnHover: true }}>
       {heroes.map((hero, index) => (
-        <div key={index}>{hero} i'm a Fader</div>
+        <div styles={{ width: '100%' }} key={index}>
+          {hero} i'm a Fader
+        </div>
       ))}
     </Fader>
   </div>
