@@ -12,7 +12,7 @@ npm install --save react-rapid-carousel
 
 ## USAGE
 
-#### clone and test our github repo and cd `./example/eomos` for more examples `https://github.com/chineduogada/react-rapid-carousel`
+#### clone and test our github repo `https://github.com/chineduogada/react-rapid-carousel`, and cd `./example/eomos` for more examples
 
 ```jsx
 import React, { useState } from 'react'
