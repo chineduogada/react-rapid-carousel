@@ -24,7 +24,6 @@ const Styled = styled.div`
         /* border: 1px solid gold; */
         box-sizing: border-box;
         flex: 1 0 ${({ flexBasis }) => flexBasis};
-        width: ${({ flexBasis }) => flexBasis};
       }
     }
 

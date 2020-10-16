@@ -1,25 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Slider, Fader } from 'react-rapid-carousel'
+import Button from './components/Button'
+import FaderDemo from './Demos/FaderDemo'
+import SliderDemo from './Demos/SliderDemo'
 
-const heroes = [
-  <div styles={{ width: '100%' }} key={4}>
-    4 <img src='./' />
-  </div>,
-  <div styles={{ width: '100%' }} key={5}>
-    5 :joy
-  </div>,
-  <div styles={{ width: '100%' }} key={6}>
-    6ix
-  </div>
-]
-const App = () => (
-  <div>
-    <Slider slidesToShow='2'>{heroes.map((hero) => hero)}</Slider>
+const App = () => {
+  const [curr, setCurr] = useState('Slider')
 
-    <Fader>{heroes.map((hero) => hero)}</Fader>
-  </div>
-)
+  const renderContent = () => {
+    if (curr === 'Slider') return <SliderDemo />
+    if (curr === 'Fader') return <FaderDemo />
+  }
+
+  const handleClick = ({
+    target: {
+      dataset: { id }
+    }
+  }) => {
+    setCurr(id)
+  }
+
+  return (
+    <div>
+      <div
+        style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+      >
+        <Button onClick={handleClick} data-id='Slider'>
+          Slider Demos
+        </Button>
+        <Button onClick={handleClick} data-id='Fader'>
+          Fader Demos
+        </Button>
+      </div>
+
+      {renderContent()}
+
+      {/* <Slider slidesToShow='2'>
+      {heroes.map((hero) => (
+        <div key={hero.id}>
+          {hero.title} <input type='text' placeholder={hero.title} />
+        </div>
+      ))}
+    </Slider>
+
+    <Fader>
+      {heroes.map((hero) => (
+        <div key={hero.id}>
+          {hero.title} <input type='text' placeholder={hero.title} />
+        </div>
+      ))}
+    </Fader> */}
+
+      {/* <Fader>{heroes.map((hero) => hero)}</Fader> */}
+    </div>
+  )
+}
 
 export default App
 

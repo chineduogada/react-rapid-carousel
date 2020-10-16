@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import createRange from '../../utils/createRange'
@@ -18,31 +18,35 @@ function Slider({
   buttons,
   transition
 }) {
+  // Default configuration
   slides = slides && !slides.length ? [slides] : slides
 
   if (!slides) {
     return null
   }
+  if (autoSlide) {
+    autoSlide = {
+      pauseOnHover: true,
+      pauseOnTab: true,
+      interval: 3800,
+      ...autoSlide
+    }
+  }
+  // end of Basic configuration
 
   // States
   const [translateX, setTranslateX] = useState(0)
   const [nextClicks, setNextClicks] = useState(0)
   const [slideToPrev, setSlideToPrev] = useState(false)
   const [startAutoSlide, setStartAutoSlide] = useState(true)
-  const sliderId = useMemo(() =>
-    `Slider__${Math.random() * 200 + Math.round(Math.random())}`.replace(
-      '.',
-      Math.floor(Math.random() + 100)
-    )
-  )
+
+  const sliderRef = useRef()
   // end of States
 
   // VARIABLES
   const { length: slidesLength } = slides
 
-  const [slidesToShow, setSlidesToShow] = useState(
-    propSlidesToShow > slidesLength ? slidesLength : propSlidesToShow
-  )
+  const [slidesToShow, setSlidesToShow] = useState(propSlidesToShow)
 
   const hasAllSlidesInContainer = slidesToShow === slidesLength
 
@@ -113,10 +117,14 @@ function Slider({
 
   // SIDE EFFECTS
   useEffect(() => {
-    const allDocSlides = document.querySelectorAll(`#${sliderId} .slide`)
+    const { current: Slider } = sliderRef
+
+    const allDocSlides = Slider.querySelectorAll('.slide')
     const allSlides = []
 
     allDocSlides.forEach((slide) => allSlides.push(slide))
+
+    console.log(Slider, allDocSlides, allSlides)
 
     const setTabIndex = (nodeList, tabIndex) => {
       nodeList.forEach((item) => {
@@ -125,8 +133,12 @@ function Slider({
         )
 
         allFocusingElements.forEach((element) => {
-          element.addEventListener('focus', handleMouseHoverSlide)
-          element.addEventListener('blur', handleMouseLeaveSlide)
+          if (autoSlide && autoSlide.pauseOnTab) {
+            console.log('hi')
+            element.addEventListener('focus', handleMouseHoverSlide)
+            element.addEventListener('blur', handleMouseLeaveSlide)
+          }
+
           element.tabIndex = tabIndex
         })
       })
@@ -137,7 +149,13 @@ function Slider({
     allSlides.splice(strippedNum(translateX), slidesToShow)
 
     setTabIndex(allSlides, -1)
-  }, [translateX, slidesToShow, handleMouseHoverSlide, handleMouseLeaveSlide])
+  }, [
+    slides,
+    translateX,
+    slidesToShow,
+    handleMouseHoverSlide,
+    handleMouseLeaveSlide
+  ])
 
   useEffect(() => {
     if (autoSlide && startAutoSlide) {
@@ -167,7 +185,7 @@ function Slider({
         } else {
           handleSlideToNext()
         }
-      }, autoSlide.interval || 1000)
+      }, autoSlide.interval)
 
       return () => {
         clearInterval(intervalId)
@@ -231,7 +249,6 @@ function Slider({
   // end of SIDE EFFECTS
 
   // Component Props
-
   const componentProps = {
     Styled: {
       flexBasis: `${100 / slidesToShow}%`
@@ -252,7 +269,7 @@ function Slider({
   return (
     <Styled
       {...componentProps.Styled}
-      id={sliderId}
+      ref={sliderRef}
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverSlide : null
       }
@@ -280,7 +297,7 @@ function Slider({
 Slider.defaultProps = {
   slidesToShow: 1,
   buttons: true,
-  dots: true,
+  dots: false,
   transition: '0.5s ease-in'
 }
 
@@ -288,7 +305,7 @@ Slider.propTypes = {
   quickSlide: PropTypes.bool,
   dots: PropTypes.bool,
   buttons: PropTypes.bool,
-  slidesToShow: PropTypes.number,
+  slidesToShow: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   transition: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
