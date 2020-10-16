@@ -91,7 +91,7 @@ const App = () => {
 
 #### Fader component
 
-##### Fader can only render one `slide` at a time: perfect for `heroes`, `banners`, `ads` etc.... has lesser functionalities (but slower in performance, and should be used for static content for best performance).
+##### Fader can only render one `slide` at a time: perfect for `heroes`, `banners`, `ads` etc.... has lesser functionalities (but slower in performance, and should be used for rendering static content for best performance).
 
 | Prop       |                                                   Type/Default                                                    | Description                                                                                                                                                                                    |
 | ---------- | :---------------------------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
