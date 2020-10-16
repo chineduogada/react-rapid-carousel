@@ -41,8 +41,7 @@ const App = () => {
           <Card data={hero} key={hero.id} />
         ))}
       </Slider>
-      // Bad `width` style prop :(, allow the Component do it for you, or use `breakpoints`
-      for responsive desire
+      
       <Slider
         // the `length` is endless :)
         breakpoints={[
@@ -56,7 +55,8 @@ const App = () => {
         {products.map((hero) => (
           <Card data={hero} key={hero.id} style={{ width: 'auto' }} />
 
-          // Bad `width` style prop :(, Don't do it!
+          // Bad `width` style prop :(, Don't do it! Allow the Component do it for you, or use `breakpoints`
+      for responsive desire
           // <Card  style={{ width: '200px' }} data={hero} key={hero.id} />
         ))}
       </Slider>
