@@ -124,8 +124,6 @@ function Slider({
 
     allDocSlides.forEach((slide) => allSlides.push(slide))
 
-    console.log(Slider, allDocSlides, allSlides)
-
     const setTabIndex = (nodeList, tabIndex) => {
       nodeList.forEach((item) => {
         const allFocusingElements = item.querySelectorAll(
@@ -134,7 +132,6 @@ function Slider({
 
         allFocusingElements.forEach((element) => {
           if (autoSlide && autoSlide.pauseOnTab) {
-            console.log('hi')
             element.addEventListener('focus', handleMouseHoverSlide)
             element.addEventListener('blur', handleMouseLeaveSlide)
           }
