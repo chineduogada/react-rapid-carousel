@@ -8,11 +8,16 @@ import Slide from '../Slide'
 import Styled from '../Styled'
 
 function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
+  // Basic configuration
   slides = slides && !slides.length ? [slides] : slides
 
   if (!slides) {
     return null
   }
+  if (autoSlide) {
+    autoSlide = { pauseOnHover: true, pauseOnTab: true, ...autoSlide }
+  }
+  // end of Basic configuration
 
   // // States
   const [currentSlideData, setCurrentSlideData] = useState({
@@ -119,7 +124,7 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
     )
 
     allFocusingElements.forEach((element) => {
-      if (element) {
+      if (autoSlide && autoSlide.pauseOnTab) {
         element.addEventListener('focus', handleMouseHoverFade)
         element.addEventListener('blur', handleMouseLeaveFade)
       }
@@ -175,9 +180,12 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
 }
 
 Fader.defaultProps = {
-  buttons: true,
+  buttons: false,
   dots: true,
-  transition: '0.5s ease-in'
+  transition: '0.5s ease-in',
+  autoSlide: {
+    interval: 3800
+  }
 }
 
 Fader.propTypes = {

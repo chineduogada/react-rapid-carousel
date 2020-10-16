@@ -1,5 +1,4 @@
 import React from 'react'
-// import './styles/Button.css'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 function Button({ isPrev, onClick, ...restProps }) {
