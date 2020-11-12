@@ -245,7 +245,6 @@ function Slider({
       }
     }
   }, [])
-  // end of SIDE EFFECTS
 
   const [state] = useSwipe(sliderRef.current)
 
@@ -258,6 +257,7 @@ function Slider({
       handleSlideToPrev()
     }
   }, [state])
+  // end of SIDE EFFECTS
 
   // Component Props
   const componentProps = {

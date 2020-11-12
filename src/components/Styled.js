@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const Styled = styled.div`
   /* border: 3px solid red; */
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -38,15 +39,15 @@ const Styled = styled.div`
       .dot {
         border: none;
         display: block;
-        border-radius: 50%;
+        border-radius: 10em;
         margin: 0 0.1875rem;
-        padding: 3.5px;
+        padding: 3.5px 12.5px;
         background-color: #3332;
         transition: 0.3s ease;
         flex: 0;
 
         &--active {
-          transform: scaleX(1.5);
+          /* transform: scaleX(1.5); */
           border-radius: 50px;
           background-color: #333;
         }
@@ -66,6 +67,19 @@ const Styled = styled.div`
           opacity: 0.8;
         }
       }
+    }
+  }
+
+  .btn {
+    position: ${({ fader }) => (fader ? 'absolute' : 'unset')};
+    transform: ${({ fader }) => (fader ? 'translateY(-50%)' : 'none')};
+    top: 50%;
+
+    &--next {
+      right: 8px;
+    }
+    &--prev {
+      left: 8px;
     }
   }
 `

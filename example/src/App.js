@@ -5,7 +5,7 @@ import FaderDemo from './Demos/FaderDemo'
 import SliderDemo from './Demos/SliderDemo'
 
 const App = () => {
-  const [curr, setCurr] = useState('Slider')
+  const [curr, setCurr] = useState('Fader')
 
   const renderContent = () => {
     if (curr === 'Slider') return <SliderDemo />

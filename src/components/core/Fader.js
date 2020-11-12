@@ -6,6 +6,7 @@ import Button from '../Button'
 import Dots from '../Dots'
 import Slide from '../Slide'
 import Styled from '../Styled'
+import useSwipe from '../../hooks/useSwipe'
 
 function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   // Basic configuration
@@ -25,6 +26,7 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
     index: 0
   })
   const [startAutoSlide, setStartAutoSlide] = useState(true)
+  const sliderRef = useRef()
   const slideRef = useRef()
   // // end of States
 
@@ -130,12 +132,25 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
       }
     })
   }, [currentSlideData])
+
+  const [state] = useSwipe(sliderRef.current)
+
+  useEffect(() => {
+    // console.log(state)
+    if (state.movedLeft) {
+      handleFadeToNext()
+    }
+    if (state.movedRight) {
+      handleFadeToPrev()
+    }
+  }, [state])
   // end of SIDE EFFECTS
 
   // Component Props
   const componentProps = {
     Styled: {
-      flexBasis: '100%'
+      flexBasis: '100%',
+      fader: 'true'
     },
     Dots: {
       data: { dots: dotsList, currentDot: currentSlideData.index },
@@ -153,6 +168,7 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
   return (
     <Styled
       {...componentProps.Styled}
+      ref={sliderRef}
       onMouseOver={
         autoSlide && autoSlide.pauseOnHover ? handleMouseHoverFade : null
       }
@@ -171,7 +187,18 @@ function Fader({ children: slides, autoSlide, dots, buttons, transition }) {
           />
         </div>
 
-        {dots && <Dots {...componentProps.Dots} />}
+        {dots && (
+          <Dots
+            style={{
+              transform: 'translateX(-50%)',
+              position: 'absolute',
+              bottom: '8px',
+              left: '50%',
+              zIndex: '10'
+            }}
+            {...componentProps.Dots}
+          />
+        )}
       </main>
 
       {buttons && <Button {...componentProps.Buttons[1]} />}
