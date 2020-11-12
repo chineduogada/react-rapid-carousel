@@ -7,6 +7,7 @@ import { getTranslateXRanges, strippedNum } from '../../helpers'
 import Dots from '../Dots'
 import Slide from '../Slide'
 import Styled from '../Styled'
+import useSwipe from '../../hooks/useSwipe'
 
 function Slider({
   children: slides,
@@ -16,7 +17,8 @@ function Slider({
   breakpoints,
   dots,
   buttons,
-  transition
+  transition,
+  swipe = true
 }) {
   // Default configuration
   slides = slides && !slides.length ? [slides] : slides
@@ -244,6 +246,18 @@ function Slider({
     }
   }, [])
   // end of SIDE EFFECTS
+
+  const [state] = useSwipe(sliderRef.current)
+
+  useEffect(() => {
+    // console.log(state)
+    if (state.movedLeft) {
+      handleSlideToNext()
+    }
+    if (state.movedRight) {
+      handleSlideToPrev()
+    }
+  }, [state])
 
   // Component Props
   const componentProps = {
