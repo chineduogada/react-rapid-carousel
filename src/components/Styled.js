@@ -34,7 +34,7 @@ const Styled = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      /* overflow: hidden; */
 
       .dot {
         border: none;
