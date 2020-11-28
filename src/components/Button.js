@@ -36,13 +36,14 @@ const Styled = styled.div`
     border-radius: 50%;
     font-size: 1.5rem;
     transition: 0.15s;
-    opacity: 0.7;
+    opacity: 0.65;
     position: relative;
 
     &:hover,
     &:focus {
       opacity: 1;
-      transform: translate(${({ isPrev }) => isPrev && '-'}5px, -50%) scale(1.1);
+      transform: translate(${({ isPrev }) => isPrev && '-'}2px, -50%)
+        scale(1.15);
       cursor: pointer;
     }
 
