@@ -37,21 +37,21 @@ const Styled = styled.div`
     font-size: 1.5rem;
     transition: 0.15s;
     opacity: 0.65;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover,
     &:focus {
       opacity: 1;
-      transform: translate(${({ isPrev }) => isPrev && '-'}2px, -50%)
-        scale(1.15);
       cursor: pointer;
     }
 
     &-icon {
-      position: absolute;
+      /* position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); */
     }
   }
 `

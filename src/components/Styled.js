@@ -90,7 +90,7 @@ Styled.defaultProps = {
   theme: {
     dots: {
       1: '#333',
-      2: '#a34'
+      2: '#3332'
     },
     carets: {
       1: '#333',

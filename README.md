@@ -10,7 +10,7 @@
 npm install --save react-rapid-carousel
 ```
 
-## USAGES
+## USAGE
 
 #### clone and test repo for more examples
 
@@ -100,6 +100,53 @@ const App = () => {
 | transition |                                              string/`"0.5s ease-in"`                                              | Css transition property                                                                                                                                                                        |
 | children   |                            Array&#60;HTMLElement&#62; &#124;&#124; HTMLElement /`null`                            | These are the total amount `slides` to be eventually displayed: all slides, For the best visual results, don't add `width` style property on it or `width: auto` is still okay                 |
 | autoSlide  | boolean/`true` &#124;&#124; {pauseOnHover: boolean/`true`, pauseOnTab: boolean/`true`, , interval: number/`3800`} | Adds animation: which happens after every interval which can be paused when the user `hovers` on the Slider or `tabs` on any focusable element and move in a reverse mode, if specified though |
+
+#### ThemeProvider component
+
+##### For changing the looks of `buttons` to match your brand
+
+### USAGE
+
+```jsx
+import React, { useState } from 'react'
+
+import { ThemeProvider, Slider, Fader } from 'react-rapid-carousel'
+import 'react-rapid-carousel/dist/index.css'
+
+const App = () => {
+  return (
+    <ThemeProvider
+      theme={{
+        dots: { 1: 'red', 2: 'orange' },
+        carets: { 1: '#333', 2: '#3332' }
+      }}
+    >
+      <Slider>
+        <div>hi</div>
+        <div>hello</div>
+      </Slider>
+
+      <ThemeProvider
+        theme={{
+          dots: { 1: 'blue', 2: 'cyan' },
+          carets: { 1: 'gold', 2: 'rbg(20, 100, 225)' }
+        }}
+      >
+        <Fader>
+          <div>hi</div>
+          <div>hello</div>
+        </Fader>
+      </ThemeProvider>
+    </ThemeProvider>
+  )
+}
+```
+
+### API
+
+| Prop  |                                    Type / Default                                     |
+| ----- | :-----------------------------------------------------------------------------------: |
+| theme | Object / { dots: { 1: '#333', 2: '#3332' }, carets: { 1: '#333', 2: 'transparent' } } |
 
 ## License
 
