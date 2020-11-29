@@ -23,6 +23,7 @@ function FaderDemo() {
             { width: 900, slidesToShow: '4' }
           ]}
           transition='ease-out 2s'
+          buttons
         >
           {heroes.map((hero) => (
             <Card data={hero} key={hero.id} />

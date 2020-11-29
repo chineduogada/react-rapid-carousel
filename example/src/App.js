@@ -1,15 +1,32 @@
 import React, { useState } from 'react'
+import { ThemeProvider } from 'react-rapid-carousel'
 
 import Button from './components/Button'
 import FaderDemo from './Demos/FaderDemo'
 import SliderDemo from './Demos/SliderDemo'
 
 const App = () => {
-  const [curr, setCurr] = useState('Slider')
+  const [curr, setCurr] = useState('Fader')
 
   const renderContent = () => {
     if (curr === 'Slider') return <SliderDemo />
-    if (curr === 'Fader') return <FaderDemo />
+    if (curr === 'Fader')
+      return (
+        <ThemeProvider
+          theme={{
+            dots: {
+              1: 'gold',
+              2: '#2af2'
+            },
+            carets: {
+              1: '#fff',
+              2: 'gold'
+            }
+          }}
+        >
+          <FaderDemo />
+        </ThemeProvider>
+      )
   }
 
   const handleClick = ({

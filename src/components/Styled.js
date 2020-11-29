@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const Styled = styled.div`
   /* border: 3px solid red; */
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -33,32 +34,32 @@ const Styled = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      /* overflow: hidden; */
 
       .dot {
         border: none;
         display: block;
-        border-radius: 50%;
+        border-radius: 10em;
         margin: 0 0.1875rem;
-        padding: 3.5px;
-        background-color: #3332;
+        padding: 3.5px 12.5px;
+        background-color: ${({ theme }) => theme.dots['2']};
         transition: 0.3s ease;
         flex: 0;
 
         &--active {
-          transform: scaleX(1.5);
+          /* transform: scaleX(1.5); */
           border-radius: 50px;
-          background-color: #333;
+          background-color: ${({ theme }) => theme.dots['1']};
         }
 
         &:hover {
-          background-color: #333;
+          background-color: ${({ theme }) => theme.dots['1']};
           cursor: pointer;
         }
 
         &:focus {
           transform: scaleX(1);
-          background-color: #333;
+          background-color: ${({ theme }) => theme.dots['1']};
           outline: none;
         }
 
@@ -68,7 +69,35 @@ const Styled = styled.div`
       }
     }
   }
+
+  .btn {
+    position: ${({ fader }) => (fader ? 'absolute' : 'unset')};
+    transform: ${({ fader }) => (fader ? 'translateY(-50%)' : 'none')};
+    top: 50%;
+    color: ${({ theme }) => theme.carets['1']};
+    background-color: ${({ theme }) => theme.carets['2']};
+
+    &--next {
+      right: 8px;
+    }
+    &--prev {
+      left: 8px;
+    }
+  }
 `
+
+Styled.defaultProps = {
+  theme: {
+    dots: {
+      1: '#333',
+      2: '#3332'
+    },
+    carets: {
+      1: '#333',
+      2: 'transparent'
+    }
+  }
+}
 
 export default Styled
 

@@ -1,6 +1,6 @@
 {
   "name": "react-rapid-carousel",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "A simple but epic React Responsive Carousel.",
   "author": "chineduogada",
   "license": "MIT",
@@ -55,6 +55,7 @@
     "dist"
   ],
   "dependencies": {
+    "react-tooltip": "^4.2.11",
     "styled-components": "^5.2.0"
   }
 }
