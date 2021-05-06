@@ -73,6 +73,7 @@ const Styled = styled.div`
   .btn {
     position: ${({ fader }) => (fader ? 'absolute' : 'unset')};
     transform: ${({ fader }) => (fader ? 'translateY(-50%)' : 'none')};
+    z-index: 1;
     top: 50%;
     color: ${({ theme }) => theme.carets['1']};
     background-color: ${({ theme }) => theme.carets['2']};
@@ -100,4 +101,3 @@ Styled.defaultProps = {
 }
 
 export default Styled
-

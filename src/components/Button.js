@@ -1,11 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
-import Tooltip from 'react-tooltip'
 
 function Button({ isPrev, onClick, ...restProps }) {
-  const content = isPrev ? 'slide backwards' : 'slide forward'
-
   return (
     <Styled isPrev={isPrev}>
       <button
@@ -14,8 +11,6 @@ function Button({ isPrev, onClick, ...restProps }) {
         role='caret-button'
         aria-label={isPrev ? 'prev button' : 'next button'}
         onClick={onClick}
-        data-tip={content}
-        data-for='btn'
       >
         {isPrev ? (
           <FaAngleLeft className='btn-icon' />
@@ -23,7 +18,6 @@ function Button({ isPrev, onClick, ...restProps }) {
           <FaAngleRight className='btn-icon' />
         )}
       </button>
-      <Tooltip id='btn' />
     </Styled>
   )
 }
@@ -57,4 +51,3 @@ const Styled = styled.div`
 `
 
 export default Button
-
