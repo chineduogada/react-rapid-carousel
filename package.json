@@ -55,7 +55,6 @@
     "dist"
   ],
   "dependencies": {
-    "react-tooltip": "^4.2.11",
     "styled-components": "^5.2.0"
   }
 }
